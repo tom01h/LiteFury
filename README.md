@@ -1,4 +1,8 @@
 # LiteFury
+Artix-7 100T が M.2 PCIe に載ってるやつです。  
+[Amazon.com: RHS Research Litefury Xilinx Artix-7 FPGA M.2 Development Board](https://www.amazon.com/dp/B08BKSVJH5) で買しました。  
+下駄も一緒に買いました。
+
 ## 環境設定
 - セキュアブートを無効にする
 - Ubuntu 18.04.4 をインストール
