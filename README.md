@@ -10,6 +10,8 @@ Artix-7 100T が M.2 PCIe に載ってるやつです。
 - sudo apt install git build-essential python3-pip
 - pip3 install numpy
 - Vivado 20.1 をインストール
+  - JTAG ドライバ https://japan.xilinx.com/support/answers/66440.html
+  - Quick Help のエラー対策 https://marsee101.blog.fc2.com/blog-entry-4913.html
 
 ## デモ試行
 ### PCIeドライバ
@@ -27,8 +29,8 @@ Artix-7 100T が M.2 PCIe に載ってるやつです。
             $(MAKE) -C $(BUILDSYSTEM_DIR) M=$(PWD) modules_install
     +       depmod -A
     ```
-  - dma_ip_drivers/XDMA/linux-kernel/xdma にて sudo make install
-  - dma_ip_drivers/XDMA/linux-kernel/tests にて sudo ./load_driver.sh 
+  - dma_ip_drivers/XDMA/linux-kernel/xdma にて `sudo make install`
+  - dma_ip_drivers/XDMA/linux-kernel/tests にて `sudo ./load_driver.sh `
 - LiteFury は買ってきたままでも試行できる
 - https://github.com/RHSResearchLLC/NiteFury-and-LiteFury をクローン
   - ファイル修正
@@ -45,5 +47,17 @@ Artix-7 100T が M.2 PCIe に載ってるやつです。
   - Sample-Projects/Project-0/Host/Host/ にて sudo python3 dma-test-2.py
 
 ### サンプルデザイン合成
-買って来たままでも試せたけど、自前の合成も試してみる
-まだ…
+
+- NiteFury-and-LiteFury/Sample-Projects/Project-0/FPGA-A100T-2/project にて `vivado project.xpr`
+- そのままではうまくできたかわからないので LED_3,4 を 1 固定した
+  - LED が点滅から消灯に変わった
+  - LED_A1 を消すと bit file ができない
+    - emc_clk をどこかで使わないといけないのかもしれない
+- `generate bitstream` -> `Open Hardware Manager` ....
+- PCIe をスキャンし直す
+  - [rescan する方法](http://nahitafu.cocolog-nifty.com/nahitafu/2017/01/pci-expressfpga.html)
+- [なひビバ](https://github.com/tokuden/NahiViva) を [Linux で使う](https://qiita.com/nahitafu/items/818569ba72ab1c39def3)
+  - LiteFury/Sample-Projects にリンク先に従ってなひビバのファイルを準備
+    - SETTINGS.sh  nahiviva.tcl  open_project_gui.sh
+  - `./open_project_gui.sh` でサンプルプロジェクト改が復元されます
+
