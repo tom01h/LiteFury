@@ -49,7 +49,7 @@ Artix-7 100T が M.2 PCIe に載ってるやつです。
 ### サンプルデザイン合成
 
 - NiteFury-and-LiteFury/Sample-Projects/Project-0/FPGA-A100T-2/project にて `vivado project.xpr`
-- そのままではうまくできたかわからないので LED_3,4 を 1 固定した
+- そのままではうまくできたかわからないので LED_A3,4 を 1 固定した
   - LED が点滅から消灯に変わった
   - LED_A1 を消すと bit file ができない
     - emc_clk をどこかで使わないといけないのかもしれない

@@ -14,7 +14,7 @@ print("レジスタアクセス")
 wdata = random.randrange(1<<64)
 print('wdata', hex(wdata))
 
-os.pwrite(fd_h2c, wdata.to_bytes(8, byteorder='little'), 0x20000000);
+os.pwrite(fd_h2c, wdata.to_bytes(8, byteorder='little'), 0x20000000)
 
 rdata = os.pread(fd_c2h, 8, 0x20000000)
 wstrb = os.pread(fd_c2h, 4, 0x20000008)
